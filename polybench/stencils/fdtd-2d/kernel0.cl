@@ -1,0 +1,30 @@
+//PASS
+//--local_size=[32,16] --num_groups=[32,16]
+
+#pragma OPENCL EXTENSION cl_khr_fp64 : enable
+
+__kernel void kernel0(__global double *ex, __global double *hz, int ny, int tmax, int nx, long c0)
+{
+  __requires(ny == 512);
+  __requires(tmax == 256);
+  __requires(nx == 1024);
+    long b0 = get_group_id(0), b1 = get_group_id(1);
+    long t0 = get_local_id(0), t1 = get_local_id(1);
+
+    #define floord(n,d) (((n)<0) ? -((-(n)+(d)-1)/(d)) : (n)/(d))
+    #define min(x,y)    ((x) < (y) ? (x) : (y))
+    #define max(x,y)    ((x) > (y) ? (x) : (y))
+    {
+      __requires((((((((ny) >= (2)) & ((ny) <= (2147483647))) & ((tmax) <= (2147483647))) & ((nx) >= (1))) & ((nx) <= (2147483647))) & ((tmax) >= ((c0) + (1)))) & ((c0) >= (0)));
+      for (long c1 = 32 * b0; c1 < nx; c1 += 8192)
+        if (nx >= t0 + c1 + 1)
+          for (long c2 = 32 * b1; c2 < ny; c2 += 8192) {
+            // shared
+            for (long c4 = max(t1, ((t1 + c2 + 15) % 16) - c2 + 1); c4 <= min(31, ny - c2 - 1); c4 += 16)
+              ex[(t0 + c1) * ny + (c2 + c4)] = (ex[(t0 + c1) * ny + (c2 + c4)] - (0.5 * (hz[(t0 + c1) * ny + (c2 + c4)] - hz[(t0 + c1) * ny + (c2 + c4 - 1)])));
+          }
+      __function_wide_invariant(__write_implies(ex, ((((((((((((32) * (b0)) + (t0)) >= (0)) & ((((32) * (b0)) + (t0)) <= (8191))) & ((nx) >= (((((__write_offset_bytes(ex)) / (sizeof(double))) / (ny)) % (nx)) + (1)))) & (((((__write_offset_bytes(ex)) / (sizeof(double))) / (ny)) % (nx)) >= (0))) & ((((__write_offset_bytes(ex)) / (sizeof(double))) % (ny)) >= (1))) & ((ny) >= ((((__write_offset_bytes(ex)) / (sizeof(double))) % (ny)) + (1)))) & (((((__write_offset_bytes(ex)) / (sizeof(double))) % (ny)) % (8192)) >= ((32) * (b1)))) & ((((32) * (b1)) + (31)) >= ((((__write_offset_bytes(ex)) / (sizeof(double))) % (ny)) % (8192)))) & ((((((32) * (b0)) + (t0)) - ((((__write_offset_bytes(ex)) / (sizeof(double))) / (ny)) % (nx))) % (8192)) == (0))) & ((((t1) - (((__write_offset_bytes(ex)) / (sizeof(double))) % (ny))) % (16)) == (0))));
+      __function_wide_invariant(__read_implies(ex, ((((((((((((32) * (b0)) + (t0)) >= (0)) & ((((32) * (b0)) + (t0)) <= (8191))) & ((nx) >= (((((__read_offset_bytes(ex)) / (sizeof(double))) / (ny)) % (nx)) + (1)))) & (((((__read_offset_bytes(ex)) / (sizeof(double))) / (ny)) % (nx)) >= (0))) & ((((__read_offset_bytes(ex)) / (sizeof(double))) % (ny)) >= (1))) & ((ny) >= ((((__read_offset_bytes(ex)) / (sizeof(double))) % (ny)) + (1)))) & (((((__read_offset_bytes(ex)) / (sizeof(double))) % (ny)) % (8192)) >= ((32) * (b1)))) & ((((32) * (b1)) + (31)) >= ((((__read_offset_bytes(ex)) / (sizeof(double))) % (ny)) % (8192)))) & ((((((32) * (b0)) + (t0)) - ((((__read_offset_bytes(ex)) / (sizeof(double))) / (ny)) % (nx))) % (8192)) == (0))) & ((((t1) - (((__read_offset_bytes(ex)) / (sizeof(double))) % (ny))) % (16)) == (0))));
+      __function_wide_invariant(__read_implies(hz, (((((((((((((32) * (b0)) + (t0)) >= (0)) & ((((32) * (b0)) + (t0)) <= (8191))) & ((nx) >= (((((__read_offset_bytes(hz)) / (sizeof(double))) / (ny)) % (nx)) + (1)))) & (((((__read_offset_bytes(hz)) / (sizeof(double))) / (ny)) % (nx)) >= (0))) & ((((__read_offset_bytes(hz)) / (sizeof(double))) % (ny)) >= (1))) & ((ny) >= ((((__read_offset_bytes(hz)) / (sizeof(double))) % (ny)) + (1)))) & (((((__read_offset_bytes(hz)) / (sizeof(double))) % (ny)) % (8192)) >= ((32) * (b1)))) & ((((32) * (b1)) + (31)) >= ((((__read_offset_bytes(hz)) / (sizeof(double))) % (ny)) % (8192)))) & ((((((32) * (b0)) + (t0)) - ((((__read_offset_bytes(hz)) / (sizeof(double))) / (ny)) % (nx))) % (8192)) == (0))) & ((((t1) - (((__read_offset_bytes(hz)) / (sizeof(double))) % (ny))) % (16)) == (0))) | (((((((((((((32) * (b0)) + (t0)) >= (0)) & ((((32) * (b0)) + (t0)) <= (8191))) & ((nx) >= (((((__read_offset_bytes(hz)) / (sizeof(double))) / (ny)) % (nx)) + (1)))) & (((((__read_offset_bytes(hz)) / (sizeof(double))) / (ny)) % (nx)) >= (0))) & ((ny) >= ((((__read_offset_bytes(hz)) / (sizeof(double))) % (ny)) + (2)))) & ((((__read_offset_bytes(hz)) / (sizeof(double))) % (ny)) >= (0))) & ((((((__read_offset_bytes(hz)) / (sizeof(double))) % (ny)) + (1)) % (8192)) >= ((32) * (b1)))) & ((((32) * (b1)) + (31)) >= (((((__read_offset_bytes(hz)) / (sizeof(double))) % (ny)) + (1)) % (8192)))) & ((((((32) * (b0)) + (t0)) - ((((__read_offset_bytes(hz)) / (sizeof(double))) / (ny)) % (nx))) % (8192)) == (0))) & (((((t1) - (((__read_offset_bytes(hz)) / (sizeof(double))) % (ny))) + (15)) % (16)) == (0)))));
+    }
+}

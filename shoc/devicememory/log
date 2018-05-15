@@ -1,0 +1,30 @@
+readConstantMemoryCoalesced --num_groups=20 --local_size=512 0:33846992 1:34544736 2:16777216 
+readConstantMemoryCoalesced --num_groups=40 --local_size=256 0:33846992 1:34544736 2:16777216 
+readGlobalMemoryCoalesced --num_groups=20 --local_size=512 0:33846992 1:34544736 2:16777216 
+readGlobalMemoryCoalesced --num_groups=40 --local_size=256 0:33846992 1:34544736 2:16777216 
+readGlobalMemoryUnit --num_groups=20 --local_size=512 0:33846992 1:34544736 2:16777216 
+readGlobalMemoryUnit --num_groups=40 --local_size=256 0:33846992 1:34544736 2:16777216 
+readImg --num_groups=[16,32] --local_size=[16,8] 0:256 1:38681120 2:35554400 3:38684784 4:256 5:256 
+readImg --num_groups=[2,4] --local_size=[16,8] 0:256 1:33846992 2:38676720 3:38684784 4:32 5:32 
+readImg --num_groups=[32,64] --local_size=[16,8] 0:256 1:38680272 2:34619600 3:38684784 4:512 5:512 
+readImg --num_groups=[4,8] --local_size=[16,8] 0:256 1:33846992 2:38676720 3:38684784 4:64 5:64 
+readImg --num_groups=[8,16] --local_size=[16,8] 0:256 1:34450688 2:38676720 3:38684784 4:128 5:128 
+readInCache --num_groups=[16,32] --local_size=[16,8] 0:256 1:38681120 2:35554400 3:38684784 
+readInCache --num_groups=[2,4] --local_size=[16,8] 0:256 1:33846992 2:38676720 3:38684784 
+readInCache --num_groups=[32,64] --local_size=[16,8] 0:256 1:38680272 2:34619600 3:38684784 
+readInCache --num_groups=[4,8] --local_size=[16,8] 0:256 1:33846992 2:38676720 3:38684784 
+readInCache --num_groups=[8,16] --local_size=[16,8] 0:256 1:34450688 2:38676720 3:38684784 
+readLocalMemory --num_groups=20 --local_size=512 0:33846992 1:34544736 2:16777216 
+readLocalMemory --num_groups=40 --local_size=256 0:33846992 1:34544736 2:16777216 
+readRand --num_groups=[16,32] --local_size=[16,8] 0:256 1:38681120 2:35554400 3:38684784 4:256 5:256 
+readRand --num_groups=[2,4] --local_size=[16,8] 0:256 1:33846992 2:38676720 3:38684784 4:32 5:32 
+readRand --num_groups=[32,64] --local_size=[16,8] 0:256 1:38680272 2:34619600 3:38684784 4:512 5:512
+readRand --num_groups=[32,64] --local_size=[16,8] 0:256 1:38680272 2:34619600 3:38684784 4:512 5:512 
+readRand --num_groups=[4,8] --local_size=[16,8] 0:256 1:33846992 2:38676720 3:38684784 4:64 5:64 
+readRand --num_groups=[8,16] --local_size=[16,8] 0:256 1:34450688 2:38676720 3:38684784 4:128 5:128 
+writeGlobalMemoryCoalesced --num_groups=20 --local_size=512 0:38676720 1:16777216 
+writeGlobalMemoryCoalesced --num_groups=40 --local_size=256 0:38676720 1:16777216 
+writeGlobalMemoryUnit --num_groups=20 --local_size=512 0:38676720 1:16777216 
+writeGlobalMemoryUnit --num_groups=40 --local_size=256 0:38676720 1:16777216 
+writeLocalMemory --num_groups=20 --local_size=512 0:38676720 1:16777216 
+writeLocalMemory --num_groups=40 --local_size=256 0:38676720 1:16777216 
