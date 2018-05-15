@@ -1,0 +1,10 @@
+*.gbpl
+*.cbpl
+*.bpl
+*.bc
+*.opt.bc
+*.loc
+*.ll
+*~
+.DS_Store
+__gvdump.txt
