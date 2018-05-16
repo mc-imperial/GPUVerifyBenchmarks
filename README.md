@@ -1,7 +1,7 @@
 # Public GPUVerify Benchmarks
 
-This repository contains updated versions of the public OpenCL and CUDA kernels
-used for evaluating [GPUVerify](http://multicore.doc.ic.ac.uk/tools/GPUVerify).
+This repository contains versions of the public OpenCL and CUDA kernels used
+to evaluate [GPUVerify](http://multicore.doc.ic.ac.uk/tools/GPUVerify).
 
 Each kernel includes a header for use with GPUVerify's testing tool
 `gvtester.py`.
@@ -22,24 +22,25 @@ The kernels originate from the following sources:
 * A set of kernels generated from the PolyBench/C benchmarks v4.0a by the
   PPCG parallel code generator (64 OpenCL kernels).
 
-The kernels are copyright their respective owners.
+The copyright of the kernels is held by their respective owners.
 
 ## Updates
 
-Updates to the kernels are as follows:
+Some of the kernels have been updated since they were used to evaluate
+GPUVerify:
 
-* The PolyBench/C kernels have been updated to v4.0a, while most of GPUVerify's
-  evaluation used v3.2.
+* The PolyBench/C kernels have been updated to v4.0a (evaluation was mostly
+  done with respect to v3.2).
 * If data-races were found in kernels and fixes were provided by the authors
   of the kernels, then these fixes have been applied.
 * If kernels were no longer accepted by recent versions of the Clang/LLVM
   compiler, which GPUVerify uses as its font-end, then the issues causing
   the non-acceptance have been fixed.
 
-## GPUVerify's Evaluation
+## Evaluations of GPUVerify
 
-GPUVerify's evaluation can be found in the following papers (in chronological
-order):
+GPUVerify has been evaluated with respect to (subsets of) the benchmark set in
+the following papers (in chronological order):
 
 * Adam Betts, Nathan Chong, Alastair F. Donaldson, Shaz Qadeer, Paul Thomson:
   GPUVerify: A verifier for GPU kernels. OOPSLA 2012: 113-132
